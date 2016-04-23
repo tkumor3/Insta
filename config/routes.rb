@@ -2,8 +2,10 @@ Rails.application.routes.draw do
   devise_for :users
 
     resources :users
-    root to: 'home#index'
+    root 'home#index'
     get 'home' => 'home#index'
+    get 'auth' => 'instagram#connect'
+    get 'callback' => 'instagram#callback'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

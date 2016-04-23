@@ -29,6 +29,8 @@ gem 'bootstrap_form'
 gem 'simple_form'
 gem 'html2haml'
 gem 'instagram'
+gem 'omniauth-instagram'
+gem 'omniauth'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
