@@ -1,0 +1,1 @@
+Devise, OAuth, Instagram, Boostrap

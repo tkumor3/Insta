@@ -1,0 +1,16 @@
+.container
+    .nav.navbar.navbar-default.navbar-fixed-top
+        .container
+            %p.navbar-text.nabar-left Inst
+            %ul.nav.nav-pills.navbar-right
+                - if user_signed_in?
+                    %li.disable{role: "presentation"}
+                        =link_to current_user.email, current_user
+                    %li.disable{role: "presentation"}
+                        =link_to "Logout", destroy_user_session_path, method: :delete
+                - else
+                    %li.disable{role: "presentation"}
+                        =link_to "Log in", new_user_session_path
+                    %li.disable{role: "presentation"}
+                        =link_to "Sing up", new_registration_path(resource_name)
+
