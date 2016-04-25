@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
-   before_action :find_user, only: :show
+
    before_action :take_client
 
 
    def show
-
-
+        @user = @client.user
+        @foll = InstaInfo.not_follow_back @client
    end
 
    def index
@@ -19,6 +19,6 @@ class UsersController < ApplicationController
     end
 
     def take_client
-        @client = Instagram.client(current_user.authorization.acces_token)
+        @client = Instagram.client(:access_token => current_user.authorization.acces_token)
     end
 end

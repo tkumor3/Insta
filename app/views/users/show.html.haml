@@ -1,0 +1,30 @@
+.container
+    %br
+    .row
+        .col-md-3.col-md-offset-2
+            = image_tag(@user.profile_picture, :class => "img-circle")
+        .col-md-7
+            %h3 #{@user.username}
+
+            %p
+                Post: #{@user.counts.media}
+                Followed by: #{@user.counts.followed_by}
+                Follows: #{@user.counts.follows}
+
+    .row
+        .col-md-12
+            .panel.panel-default
+                .panel-heading
+                    %p User not follow you back
+                .table.table-striped
+                    %thead
+                        %tr
+                            %td User
+                            %td Photo
+                            %td Tome
+                        %tr
+                    %tbody
+                        - @foll.each do |f|
+                            %tr
+                                %td= f.username
+                                %td= link_to "unfollow", unfollow_path(id: f.id, name: f.username), method: :post
