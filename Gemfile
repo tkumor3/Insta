@@ -26,11 +26,11 @@ gem 'haml'
 gem 'devise'
 gem 'bootstrap-sass'
 gem 'bootstrap_form'
-gem 'simple_form'
 gem 'html2haml'
 gem 'instagram'
 gem 'omniauth-instagram'
 gem 'omniauth'
+gem "bootstrap-table-rails"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

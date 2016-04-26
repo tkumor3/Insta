@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
    def show
         @user = @client.user
-        @foll = InstaInfo.not_follow_back @client
+        @foll = InstaInfo.not_follow_back(@client,current_user.id)
    end
 
    def index

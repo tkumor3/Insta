@@ -12,19 +12,21 @@
                 Follows: #{@user.counts.follows}
 
     .row
-        .col-md-12
+        .col-md-5
             .panel.panel-default
                 .panel-heading
                     %p User not follow you back
-                .table.table-striped
+                %table
                     %thead
                         %tr
                             %td User
-                            %td Photo
-                            %td Tome
+                            %td Follow from
+                            %td
                         %tr
                     %tbody
                         - @foll.each do |f|
                             %tr
                                 %td= f.username
-                                %td= link_to "unfollow", unfollow_path(id: f.id, name: f.username), method: :post
+                                %td
+                                %td= link_to "unfollow", unfollow_path(id: f.id, name: f.username),
+                                method: :post, :class => "btn btn-danger"
