@@ -10,16 +10,27 @@ class InstagramController < ApplicationController
 
     def callback
         response = Instagram.get_access_token(params[:code], :redirect_uri => CALLBACK_URL)
-        Authorization.set_user_autorization(response, current_user)
-        redirect_to current_user
+         if Authorization.set_user_autorization(response, current_user)
+             flash[:success] = "Autorization complite"
+             redirect_to current_user
+         else
+             flash[:dangerous] = "Autorization falure"
+             redirect_to home_path
+         end
+
     end
 
     def un_follow
         id = params[:id]
-        name = params[:name]
         client = Instagram.client(:access_token => current_user.authorization.acces_token)
         client.unfollow_user(id)
         flash[:success] = "unfollowed success"
+        redirect_to current_user
+    end
+
+    def i_want_follow
+        id = params[:id]
+        current_user.followers.find_by(ins_id: id).i_want_follow
         redirect_to current_user
     end
 

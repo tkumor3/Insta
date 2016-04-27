@@ -22,11 +22,14 @@
                             %td User
                             %td Follow from
                             %td
+                            %td
                         %tr
                     %tbody
-                        - @foll.each do |f|
-                            %tr
-                                %td= f.username
-                                %td
-                                %td= link_to "unfollow", unfollow_path(id: f.id, name: f.username),
-                                method: :post, :class => "btn btn-danger"
+                        - unless @foll.nil?
+                            - @foll.each do |f|
+                                %tr
+                                    %td= f.username
+                                    %td
+                                    %td= link_to "unfollow", unfollow_path(id: f.id, name: f.username),
+                                    method: :post, :class => "btn btn-danger"
+                                    %td= link_to "Ok", wantFollow_path(id: f.id), method: :post, :class => "btn btn-primary"
