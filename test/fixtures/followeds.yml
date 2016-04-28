@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  username: MyString
+  ins_id: MyString
+  isFollow: false
+  user_id: 1
+
+two:
+  username: MyString
+  ins_id: MyString
+  isFollow: false
+  user_id: 1

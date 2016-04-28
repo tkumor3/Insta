@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     get 'auth' => 'instagram#connect'
     get 'callback' => 'instagram#callback'
     post 'unfollow' => 'instagram#un_follow'
-    post 'wantFollow' => 'instagram#i_want_follow'
+    post 'wantFollow' => 'instagram#want_follow'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

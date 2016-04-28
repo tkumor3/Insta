@@ -1,6 +1,7 @@
 class Follower < ActiveRecord::Base
 
-    validates :username, :ins_id, uniqueness: true
+    validates_uniqueness_of :user_id, :scope => :ins_id
+
 
     def self.add(insta, user_id, watch)
         if foll = Follower.new(user_id: user_id)

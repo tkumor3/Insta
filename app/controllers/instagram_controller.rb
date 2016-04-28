@@ -28,9 +28,9 @@ class InstagramController < ApplicationController
         redirect_to current_user
     end
 
-    def i_want_follow
+    def want_follow
         id = params[:id]
-        current_user.followers.find_by(ins_id: id).i_want_follow
+        current_user.followers.find_by(ins_id: id).i_want_follow()
         redirect_to current_user
     end
 

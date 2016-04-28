@@ -6,7 +6,8 @@ class UsersController < ApplicationController
 
    def show
         @user = @client.user
-        @foll = @info.not_follow_back current_user.id
+        @info.update_info current_user
+       @foll = @info.not_follow_back current_user
    end
 
    def index
