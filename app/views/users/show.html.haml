@@ -51,6 +51,6 @@
                                         %td= distance_of_time_in_words(Time.now - f.updated_at)
                                         %td
                                             .button-group
-                                                = link_to "unfollow", unfollow_path(id: f.ins_id, name: f.username),
-                                                method: :post, :class => "btn btn-danger"
-                                                = link_to "Ok", wantFollow_path(id: f.ins_id), method: :post, :class => "btn btn-primary"
+                                                = link_to "like photos", "#",
+                                                method: :post, :class => "btn btn-primary"
+
