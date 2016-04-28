@@ -6,11 +6,44 @@
 }
 .panel{
 
+
 }
-table{
-  border-collapse: collapse;
+
+
+table {
   width: 100%;
+  text-align: center;
+  tbody {
+     tr {
+      border: 1px solid cornflowerblue;
+
+
+      p {
+        font-size: 1.2em;
+
+      }
+    }
+  }
+  td {
+    width: 33%;
+  }
+
+  .button-group{
+
+    text-align: right;
+
+
+  }
 }
-td {
-  width: 33%;
+.panel-heading {
+
+  p {
+    text-align: center;
+
+    font-size: 1.4em;
+  }
+}
+
+.follow-container {
+  margin-top: 100px;
 }

@@ -4,6 +4,11 @@ class Follower < ActiveRecord::Base
 
 
     def self.add(insta, user_id, watch)
+
+        if back = Follower.find_by(user_id: user_id, ins_id:insta.id, is_follow: false )
+            back.update_attributes!(is_follow: true)
+        end
+
         if foll = Follower.new(user_id: user_id)
             foll.username = insta.username
             foll.ins_id = insta.id
@@ -17,7 +22,11 @@ class Follower < ActiveRecord::Base
     end
 
     def follower_to_delete
-        update_attributes!(toFollows: false)
+        self.update_attributes!(toFollows: false)
+    end
+
+    def stop_follow
+        self.update_attributes!(is_follow: false)
     end
 
 end
