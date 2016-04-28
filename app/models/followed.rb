@@ -4,12 +4,12 @@ class Followed < ActiveRecord::Base
 
     def self.add(insta, user_id)
 
-        unless back = Follower.find_by(user_id: user_id, ins_id: insta.id)
-            if foll = Followed.new(user_id: user_id)
+        unless back = Followed.find_by(user_id: user_id, ins_id: insta.id)
+                foll = Followed.new(user_id: user_id)
                 foll.username = insta.username
                 foll.ins_id = insta.id
                 foll.save
-            end
+
         else
             back.update_attributes!(is_follow: true)
         end
