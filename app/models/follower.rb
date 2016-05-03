@@ -26,7 +26,9 @@ class Follower < ActiveRecord::Base
     end
 
     def stop_follow
-        self.update_attributes!(is_follow: false)
+        if is_follow
+            self.update_attributes!(is_follow: false)
+        end
     end
 
 end

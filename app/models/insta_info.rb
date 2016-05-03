@@ -3,6 +3,7 @@ require 'instagram'
 class InstaInfo
 
     def initialize client
+
         @fow = client.user_follows(client.user.id)
         @foed = client.user_followed_by(client.user.id)
 

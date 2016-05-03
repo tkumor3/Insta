@@ -5,52 +5,10 @@
             = image_tag(@user.profile_picture, :class => "img-circle")
         .col-md-7
             %h3 #{@user.username}
-
+            = link_to "edit" , "#"
             %p
                 Post: #{@user.counts.media}
                 Followed by: #{@user.counts.followed_by}
                 Follows: #{@user.counts.follows}
-    .follow-container
-        .row
-            .col-md-6
-                .panel.panel-default
-                    .panel-heading
-                        %p User not follow you back
-                    %table
-                        %thead
-                            %tr
-                                %td User
-                                %td Follow from
-                                %td
-                        %tbody
-                            - unless @foll.nil?
-                                - @foll.each do |f|
-                                    %tr
-                                        %td= f.username
-                                        %td= distance_of_time_in_words(Time.now - f.created_at)
-                                        %td
-                                            .button-group
-                                                =link_to "unfollow", unfollow_path(id: f.ins_id, name: f.username),
-                                                method: :post, :class => "btn btn-danger"
-                                                = link_to "Ok", wantFollow_path(id: f.ins_id), method: :post, :class => "btn btn-primary"
-            .col-md-6
-                .panel.panel-default
-                    .panel-heading
-                        %p Followed by and don't follow
-                    %table
-                        %thead
-                            %tr
-                                %td User
-                                %td Follow from
-                                %td
-                        %tbody
-                            - unless @foed.nil?
-                                - @foed.each do |f|
-                                    %tr
-                                        %td= f.username
-                                        %td= distance_of_time_in_words(Time.now - f.updated_at)
-                                        %td
-                                            .button-group
-                                                = link_to "like photos", "#",
-                                                method: :post, :class => "btn btn-primary"
 
+    =render "users/table"
