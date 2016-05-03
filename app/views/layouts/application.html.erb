@@ -8,9 +8,13 @@
 </head>
 <body>
 <%= render 'layouts/nav' %>
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-<p class="success"><%= alert %></p>
+
+
+<div class= "messages" >
+<% flash.each do |name, msg| %>
+    <%= content_tag :div, msg, class: "alert alert-info" %>
+<% end %>
+</div>
 
 
 <%= yield %>
