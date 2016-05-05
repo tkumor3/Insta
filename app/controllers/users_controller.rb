@@ -7,6 +7,7 @@ class UsersController < ApplicationController
    def show
         @user = @client.user
         authorize @user_p
+        UserM.email(current_user).deliver_now
         @info.update_info @user_p
        @foll = @info.not_follow_back @user_p
        @foed = @info.only_followed_by @user_p

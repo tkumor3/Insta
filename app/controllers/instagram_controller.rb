@@ -12,12 +12,12 @@ class InstagramController < ApplicationController
         response = Instagram.get_access_token(params[:code], :redirect_uri => CALLBACK_URL)
          if Authorization.set_user_autorization(response, current_user)
              flash[:notice] = "authorization"
+
              redirect_to current_user
          else
              flash[:alert] = "Authorization falure"
              redirect_to home_path
          end
-
     end
 
     def un_follow
