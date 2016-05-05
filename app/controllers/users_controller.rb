@@ -1,9 +1,8 @@
 class UsersController < ApplicationController
-include Pundit
-    before_action :authenticate_user!
-   after_action :verify_authorized
+    include Pundit
+    after_action :verify_authorized
    before_action :info, only: :show
-
+    rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
    def show
         @user = @client.user
@@ -14,8 +13,13 @@ include Pundit
    end
 
    def index
-
+       @user_list = User.active_user
+       authorize User
    end
+
+    def delete
+
+    end
 
    private
 
@@ -24,6 +28,11 @@ include Pundit
         @user_p = User.find(params[:id])
         @client = Instagram.client(:access_token => @user_p.authorization.acces_token)
         @info = InstaInfo.new(@client)
+    end
+
+    def user_not_authorized
+        flash[:alert] = "You are not cool enough to do this - go back from whence you came."
+        redirect_to current_user
     end
 
 

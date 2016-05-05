@@ -1,4 +1,5 @@
 class Authorization < ActiveRecord::Base
+    validates :name, :id_ins,  uniqueness: true
     belongs_to :user
 
     def self.set_user_autorization(auth,user)
@@ -7,7 +8,9 @@ class Authorization < ActiveRecord::Base
             user_auth.acces_token = auth.access_token
             user_auth.name = auth.user.username
             user_auth.id_ins = auth.user.id
-            user_auth.save!
+             if user_auth.save!
+                 user.is_authorizated_now
+             end
         end
     end
 end

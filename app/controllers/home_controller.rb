@@ -1,11 +1,12 @@
 class HomeController < ApplicationController
+
     before_action :check_auth
     def index
 
     end
 
     def check_auth
-        unless current_user.authorization.nil?
+        if user_signed_in? && current_user.have_authorization?
             redirect_to current_user
         end
     end

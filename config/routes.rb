@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
-  devise_for :users
+
+  root to: "home#index"
+    devise_for :users
 
     resources :users
-    root 'home#index'
+
     get 'home' => 'home#index'
     get 'auth' => 'instagram#connect'
     get 'callback' => 'instagram#callback'

@@ -1,5 +1,8 @@
-- content_for(:title, 'Home')
-- content_for(:head) do
-    = javascript_include_tag :foo
+.container
+    %ul
+        - @user_list.each  do |user|
+            %li
+                #{user.email}
+                =link_to "Profil", user_path(user)
 
-%h1 Tomek
+
