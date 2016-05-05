@@ -1,1 +1,5 @@
-Devise, OAuth, Instagram, Boostrap
+Devise, OAuth, Instagram, Boostrap, Pundit
+
+heroku:
+
+http://inb.herokuapp.com
