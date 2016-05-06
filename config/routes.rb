@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     devise_for :users
 
     resources :users
-
+     get '/.well-known/acme-challenge/:id' => 'home#letsencrypt'
     get 'home' => 'home#index'
     get 'auth' => 'instagram#connect'
     get 'callback' => 'instagram#callback'
