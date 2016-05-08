@@ -4,7 +4,7 @@
             .col-md-6
                 .panel.panel-default
                     .panel-heading
-                        %p User not follow you back
+                        %p Stop Follow
                     %table
                         %thead
                             %tr
@@ -19,13 +19,11 @@
                                         %td= distance_of_time_in_words(Time.now - f.created_at)
                                         %td
                                             .button-group
-                                                =link_to "unfollow", unfollow_path(id: f.ins_id, name: f.username),
-                                                    method: :post, :class => "btn btn-danger"
-                                                = link_to "Ok", wantFollow_path(id: f.ins_id), method: :post, :class => "btn btn-primary"
+
             .col-md-6
                 .panel.panel-default
                     .panel-heading
-                        %p Followed by and don't follow
+                        %p Only Followed by
                     %table
                         %thead
                             %tr

@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
                                               username: auth.user.username)
 
       inst_user.user_id = self.id
-      inst_user.profile_picture = auth.profile_picture
+      inst_user.profile_picture = auth.user.profile_picture
       if inst_user.save
         InstToken.create(access_token: auth.access_token,user_id: self.id)
         self.update_attributes(have_authorization: true)

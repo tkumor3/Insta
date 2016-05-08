@@ -51,14 +51,14 @@ class InstaUser < ActiveRecord::Base
         foed.each {|inst_user| InstaUser.add(inst_user)}
 
         id_ed = []
-        foed.each {|id| id_ed << id.ins_id }
+        foed.each {|id| id_ed << id.id }
         followed = InstaUser.where(ins_id: id_ed).to_a
         db_followed = self.followers.to_a
         (followed - db_followed).each {|user| user.follow(self)}
         (db_followed - followed).each {|user| user.unfollow(self)}
 
         id_w = []
-        fow.each {|id| id_w << id.ins_id }
+        fow.each {|id| id_w << id.id }
         follower = InstaUser.where(ins_id: id_w).to_a
         db_follower = self.followering.to_a
         (follower- db_follower).each {|user| self.follow(user)}
