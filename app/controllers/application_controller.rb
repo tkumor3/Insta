@@ -3,6 +3,6 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery prepend: true
   before_action :authenticate_user!
-  force_ssl
+  #force_ssl
 
 end

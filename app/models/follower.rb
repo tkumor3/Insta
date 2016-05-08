@@ -1,6 +1,8 @@
 class Follower < ActiveRecord::Base
+    belongs_to :user
     validates_uniqueness_of :user_id, :scope => :ins_id
 
+    #Follower dowload from instagram
 
     def self.add(insta, user_id, watch)
         if back = Follower.find_by(user_id: user_id, ins_id:insta.id, is_follow: false )

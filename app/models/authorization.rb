@@ -8,7 +8,7 @@ class Authorization < ActiveRecord::Base
             user_auth.acces_token = auth.access_token
             user_auth.name = auth.user.username
             user_auth.id_ins = auth.user.id
-             if user_auth.save!
+             if user_auth.save
                  user.is_authorizated_now
              end
         end
