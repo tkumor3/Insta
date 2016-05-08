@@ -10,11 +10,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
 
-  def destroyUse
-      self.authorization.destroy
-      self.destroy
-  end
-
 
   def set_user_autorization(auth)
     unless self.have_authorization
