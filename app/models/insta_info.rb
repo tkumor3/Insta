@@ -35,4 +35,9 @@ class InstaInfo
         ufoer.each {|id| id_ed << id.ins_id }
         user.followeds.where(is_follow: true).where.not(ins_id: id_ed)
     end
+
+
+
+
+
 end

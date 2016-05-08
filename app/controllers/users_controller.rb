@@ -5,12 +5,12 @@ class UsersController < ApplicationController
     rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
    def show
-        @user = @client.user
+        @user = current_user.insta_user
         authorize @user_p
 
-        @info.update_info @user_p
-       @foll = @info.not_follow_back @user_p
-       @foed = @info.only_followed_by @user_p
+        @user.update_relation @client
+       @foll = @user.was_followers
+       @foed = @user.followers.to_a - @user.followering.to_a
    end
 
    def index
@@ -27,8 +27,8 @@ class UsersController < ApplicationController
 
     def info
         @user_p = User.find(params[:id])
-        @client = Instagram.client(:access_token => @user_p.authorization.acces_token)
-        @info = InstaInfo.new(@client)
+        @client = Instagram.client(:access_token => @user_p.inst_token.access_token)
+
     end
 
     def user_not_authorized

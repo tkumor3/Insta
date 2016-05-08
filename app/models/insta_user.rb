@@ -1,8 +1,8 @@
 class InstaUser < ActiveRecord::Base
-    #validates :username, uniqueness: true
-    #validates :username, :ins_id, presence: true
+    validates :username, uniqueness: true
+    validates :username, :ins_id, presence: true
 
-    has_one :user
+    belongs_to :user
 
     has_many :active_relationships, class_name: "InstRelation",
              foreign_key: :follower_id,
@@ -29,7 +29,8 @@ class InstaUser < ActiveRecord::Base
 
 
     def follow(insta_user)
-        was_active_relationships.find_by(followed_id: insta_user.id).destroy if was_followering.include?(insta_user)
+        was_active_relationships.find_by(followed_id:
+                                             insta_user.id).destroy if was_followering.include?(insta_user)
         active_relationships.create(followed_id: insta_user.id)
     end
 
@@ -41,6 +42,35 @@ class InstaUser < ActiveRecord::Base
 
     def followering?(insta_user)
         followering.include?(insta_user)
+    end
+
+    def update_relation client
+        fow = client.user_follows(client.user.id)
+        foed = client.user_followed_by(client.user.id)
+        fow.each {|inst_user| InstaUser.add(inst_user)}
+        foed.each {|inst_user| InstaUser.add(inst_user)}
+
+        id_ed = []
+        foed.each {|id| id_ed << id.ins_id }
+        followed = InstaUser.where(ins_id: id_ed).to_a
+        db_followed = self.followers.to_a
+        (followed - db_followed).each {|user| user.follow(self)}
+        (db_followed - followed).each {|user| user.unfollow(self)}
+
+        id_w = []
+        fow.each {|id| id_w << id.ins_id }
+        follower = InstaUser.where(ins_id: id_w).to_a
+        db_follower = self.followering.to_a
+        (follower- db_follower).each {|user| self.follow(user)}
+        (db_follower - follower).each {|user| self.unfollow(user)}
+
+    end
+
+    def self.add(inst_user)
+        if InstaUser.find_by(username: inst_user.username).nil?
+            InstaUser.create(ins_id: inst_user.id,
+                                    username: inst_user.username)
+        end
     end
 
 

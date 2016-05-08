@@ -12,7 +12,7 @@ class InstagramController < ApplicationController
         response = Instagram.get_access_token(params[:code], :redirect_uri => CALLBACK_URL)
          if current_user.set_user_autorization(response)
              flash[:notice] = "authorization"
-             UserM.email(current_user).deliver_now
+       #      UserM.email(current_user).deliver_now
 
              redirect_to current_user
          else
