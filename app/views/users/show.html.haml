@@ -7,6 +7,8 @@
             %h3 #{@user.username}
             = link_to "edit" , "#"
             %p
+                follower by: #{@user.followers.count}
+                followers: #{@user.followering.count}
 
 
 

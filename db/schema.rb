@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160508222811) do
+ActiveRecord::Schema.define(version: 20160510193816) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,13 @@ ActiveRecord::Schema.define(version: 20160508222811) do
   add_index "inst_relations", ["follower_id", "followed_id"], name: "index_inst_relations_on_follower_id_and_followed_id", unique: true, using: :btree
   add_index "inst_relations", ["follower_id"], name: "index_inst_relations_on_follower_id", using: :btree
 
+  create_table "inst_tags", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "media_count"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "inst_tokens", force: :cascade do |t|
     t.string   "access_token"
     t.integer  "user_id"
@@ -66,9 +73,18 @@ ActiveRecord::Schema.define(version: 20160508222811) do
     t.string   "username"
     t.string   "ins_id"
     t.integer  "user_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.string   "profile_picture"
+    t.string   "last_photo",      default: "0"
+  end
+
+  create_table "tag_relations", force: :cascade do |t|
+    t.integer  "insta_user_id"
+    t.integer  "inst_tag_id"
+    t.integer  "counter"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "users", force: :cascade do |t|

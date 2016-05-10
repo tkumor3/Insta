@@ -2,7 +2,8 @@ class InstaUser < ActiveRecord::Base
     validates :username, uniqueness: true
     validates :username, :ins_id, presence: true
 
-    belongs_to :user
+    has_many :tag_relations
+    has_many :inst_tags , through: :tag_relations
 
     has_many :active_relationships, class_name: "InstRelation",
              foreign_key: :follower_id,
@@ -39,10 +40,6 @@ class InstaUser < ActiveRecord::Base
         was_active_relationships.create(followed_id: insta_user.id)
     end
 
-
-    def followering?(insta_user)
-        followering.include?(insta_user)
-    end
 
     def update_relation client
         fow = client.user_follows(client.user.id)
