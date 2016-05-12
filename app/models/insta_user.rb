@@ -41,28 +41,6 @@ class InstaUser < ActiveRecord::Base
     end
 
 
-    def update_relation client
-        fow = client.user_follows(client.user.id)
-        foed = client.user_followed_by(client.user.id)
-        fow.each {|inst_user| InstaUser.add(inst_user)}
-        foed.each {|inst_user| InstaUser.add(inst_user)}
-
-        id_ed = []
-        foed.each {|id| id_ed << id.id }
-        followed = InstaUser.where(ins_id: id_ed).to_a
-        db_followed = self.followers.to_a
-        (followed - db_followed).each {|user| user.follow(self)}
-        (db_followed - followed).each {|user| user.unfollow(self)}
-
-        id_w = []
-        fow.each {|id| id_w << id.id }
-        follower = InstaUser.where(ins_id: id_w).to_a
-        db_follower = self.followering.to_a
-        (follower- db_follower).each {|user| self.follow(user)}
-        (db_follower - follower).each {|user| self.unfollow(user)}
-
-    end
-
     def self.add(inst_user)
         if InstaUser.find_by(username: inst_user.username).nil?
             InstaUser.create(ins_id: inst_user.id,

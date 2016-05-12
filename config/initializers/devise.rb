@@ -80,7 +80,7 @@ Devise.setup do |config|
   # By default Devise will store the user in session. You can skip storage for
   # particular strategies by setting this option.
   # Notice that if you are skipping storage for all authentication paths, you
-  # may want to disable generating routes to Devise's sessions controller by
+  # may want to disable generating routes to Devise'services sessions controller by
   # passing skip: :sessions to `devise_for` in your config/routes.rb
   config.skip_session_storage = [:http_auth]
 
@@ -104,7 +104,7 @@ Devise.setup do |config|
   # Set up a pepper to generate the hashed password.
   # config.pepper = 'cbb3909a8ca831ed8d8fe3ae4df7bf3a87ec980bae978f2975b09c9c9af09ff3afefabc98681c0b85ab662f7878f075987cc4531b75581095508c4f01a9539ec'
 
-  # Send a notification email when the user's password is changed
+  # Send a notification email when the user'services password is changed
   # config.send_password_change_notification = false
 
   # ==> Configuration for :confirmable
@@ -139,7 +139,7 @@ Devise.setup do |config|
   # Invalidates all the remember me tokens when the user signs out.
   config.expire_all_remember_me_on_sign_out = true
 
-  # If true, extends the user's remember period when remembered via cookie.
+  # If true, extends the user'services remember period when remembered via cookie.
   # config.extend_remember_period = false
 
   # Options to be passed to the created cookie. For instance, you can set
@@ -212,11 +212,11 @@ Devise.setup do |config|
 
   # ==> Scopes configuration
   # Turn scoped views on. Before rendering "sessions/new", it will first check for
-  # "users/sessions/new". It's turned off by default because it's slower if you
+  # "users/sessions/new". It'services turned off by default because it'services slower if you
   # are using only default views.
   # config.scoped_views = false
 
-  # Configure the default scope given to Warden. By default it's the first
+  # Configure the default scope given to Warden. By default it'services the first
   # devise role declared in your routes (usually :user).
   # config.default_scope = :user
 
@@ -254,7 +254,7 @@ Devise.setup do |config|
   # end
 
   # ==> Mountable engine configurations
-  # When using Devise inside an engine, let's call it `MyEngine`, and this engine
+  # When using Devise inside an engine, let'services call it `MyEngine`, and this engine
   # is mountable, there are some extra configurations to be taken into account.
   # The following options are available, assuming the engine is mounted as:
   #

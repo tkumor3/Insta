@@ -7,7 +7,7 @@ class UsersController < ApplicationController
    def show
         @user = current_user.insta_user
         authorize @user_p
-        @user.update_relation @client
+        UpdateRelation.build.call(@client,@user)
         InstTag.tag_from_photo(@user,@client)
        @foll = @user.was_followers
         @usr_foll = @user.followers
