@@ -10,7 +10,7 @@ class InstagramController < ApplicationController
 
     def callback
         response = Instagram.get_access_token(params[:code], :redirect_uri => CALLBACK_URL)
-         if current_user.set_user_autorization(response)
+         if InstagramAuthorization.build.call(response,current_user)
              flash[:notice] = "authorization"
        #      UserM.email(current_user).deliver_now
 
