@@ -1,0 +1,2 @@
+class UpdateFollowers
+end
