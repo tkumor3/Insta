@@ -1,17 +1,19 @@
 class UsersController < ApplicationController
     include Pundit
-    after_action :verify_authorized
+   # after_action :verify_authorized
+    before_action :get_user
    before_action :info, only: :show
+
     rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
    def show
         @user = current_user.insta_user
         authorize @user_p
         UpdateRelation.build.call(@client,@user)
-        InstTag.tag_from_photo(@user,@client)
+        TakeTagFromPhotos.build.call(@client,@user)
        @foll = @user.was_followers
         @usr_foll = @user.followers
-       @foed = @user.followers.to_a - @user.followering.to_a
+       @foed = @user.followers - @user.followering
 
    end
 
@@ -24,11 +26,22 @@ class UsersController < ApplicationController
 
     end
 
-   private
+   def not_follow_back
+       render_json(@user_p.insta_user.followering - @user_p.insta_user.followers)
+   end
 
+    def stop_follow
+
+        render_json(@user_p.insta_user.was_followers)
+    end
+
+    def pokemon
+
+        render_json(@user_p.insta_user.followers - @user_p.insta_user.followering)
+    end
 
     def info
-        @user_p = User.find(params[:id])
+
         @client = Instagram.client(:access_token => @user_p.inst_token.access_token)
 
     end
@@ -37,6 +50,18 @@ class UsersController < ApplicationController
         flash[:alert] = "You are not cool enough to do this - go back from whence you came."
         redirect_to current_user
     end
+
+    private
+
+        def get_user
+            @user_p = User.find(params[:id])
+        end
+
+        def render_json data
+
+            render json: data.map {|content|
+                {id: content.ins_id , name: content.username}}
+        end
 
 
 end

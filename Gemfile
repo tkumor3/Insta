@@ -28,12 +28,10 @@ gem 'bootstrap-sass'
 gem 'bootstrap_form'
 gem 'html2haml'
 gem 'instagram'
-gem 'omniauth-instagram'
-gem 'omniauth'
 gem "bootstrap-table-rails"
 gem "pundit"
 gem "figaro"
-
+gem 'jquery-datatables-rails', '~> 3.3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

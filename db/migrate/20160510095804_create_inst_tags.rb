@@ -8,3 +8,4 @@ class CreateInstTags < ActiveRecord::Migration
     end
   end
 end
+

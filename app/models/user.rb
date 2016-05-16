@@ -11,19 +11,5 @@ class User < ActiveRecord::Base
 
 
 
-  def set_user_autorization(auth)
-    unless self.have_authorization
-      inst_user = InstaUser.find_or_create_by(ins_id: auth.user.id,
-                                              username: auth.user.username)
-
-      inst_user.user_id = self.id
-      inst_user.profile_picture = auth.user.profile_picture
-      if inst_user.save
-        InstToken.create(access_token: auth.access_token,user_id: self.id)
-        self.update_attributes(have_authorization: true)
-      end
-    end
-  end
-
   end
 

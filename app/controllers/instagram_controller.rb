@@ -1,6 +1,7 @@
 require "instagram"
 
 class InstagramController < ApplicationController
+    before_action take_data, only: [:un_follow, :follow]
 
 
     def connect
@@ -22,19 +23,24 @@ class InstagramController < ApplicationController
     end
 
     def un_follow
-        id = params[:id]
-        client = Instagram.client(:access_token => current_user.authorization.acces_token)
-        client.unfollow_user(id)
+
+        InstagramUnFollow.build.call(current_user,@client,@id)
         flash[:notice] = "unfollowed success"
         redirect_to :back
     end
 
-    def want_follow
-        id = params[:id]
-        current_user.followers.find_by(ins_id: id).i_want_follow()
+    def follow
+        InstagramUnFollow.build.call(current_user,@client,@id)
         redirect_to :back
     end
 
+    private
+
+    def take_data
+        @id = params[:id]
+        @client = Instagram.client(:access_token => current_user.authorization.acces_token)
+
+    end
 
 
 end

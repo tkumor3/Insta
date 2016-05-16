@@ -1,9 +1,19 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+
+.display{
+  display: none;
+}
+.yield-part{
+  margin-bottom: 60px;
+}
+
+
 .messages{
   margin-top: 60px;
   text-align: center;
+
 }
 
 .logo{
