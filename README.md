@@ -5,6 +5,6 @@ heroku:
 http://inb.herokuapp.com
 
 App is in Instagram sandbox, so you need Instagram profile which work with it.</br>
-You can authorize using: </br>
-username: tkumor4</br>
-password: tomek1
+You can use my account: </br>
+username: example@gmail.com</br>
+password: example
