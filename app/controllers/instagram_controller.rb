@@ -1,7 +1,8 @@
 require "instagram"
 
 class InstagramController < ApplicationController
-    before_action take_data, only: [:un_follow, :follow]
+
+    before_action :take_data, only: [:un_follow, :follow]
 
 
     def connect
@@ -13,8 +14,7 @@ class InstagramController < ApplicationController
         response = Instagram.get_access_token(params[:code], :redirect_uri => CALLBACK_URL)
          if InstagramAuthorization.build.call(response,current_user)
              flash[:notice] = "authorization"
-       #      UserM.email(current_user).deliver_now
-
+            #UserM.email(current_user).deliver_now
              redirect_to current_user
          else
              flash[:alert] = "Authorization falure"
@@ -23,22 +23,26 @@ class InstagramController < ApplicationController
     end
 
     def un_follow
-
+        @id
         InstagramUnFollow.build.call(current_user,@client,@id)
         flash[:notice] = "unfollowed success"
         redirect_to :back
+
     end
 
     def follow
-        InstagramUnFollow.build.call(current_user,@client,@id)
+
+        InstagramFollow.build.call(current_user,@client,@id)
         redirect_to :back
+
     end
 
     private
 
     def take_data
+
         @id = params[:id]
-        @client = Instagram.client(:access_token => current_user.authorization.acces_token)
+        @client = Instagram.client(:access_token => current_user.inst_token.access_token)
 
     end
 

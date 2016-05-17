@@ -37,8 +37,6 @@ $(document).ready(function() {
         clean();
         table("follow");
     });
-
-
 } );
 
 
@@ -46,10 +44,16 @@ function unfollow(ins_id){
     console.log("unfollow");
     $("table .button").append('<input type="button" value="unfollow"/>');
     $("table .button").last().on("click",function(){
-        $.post('/instagram/unfollow',{ id: ins_id});
+
+        $.ajax({
+            type: "POST",
+            url: "/instagram/unfollow",
+            data:  { id: ins_id },
+
+
+        });
 
     });
-
 }
 
 function follow(ins_id){
@@ -59,8 +63,6 @@ function follow(ins_id){
         $.post('/instagram/follow',{ id: ins_id});
 
     });
-
-
 }
 
 

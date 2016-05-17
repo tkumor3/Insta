@@ -15,9 +15,15 @@ class UserPolicy < ApplicationPolicy
     end
 
     def not_follow_back?
-
+        @current_user.admin? or @current_user == @user
     end
 
+    def stop_follow?
+        @current_user.admin? or @current_user == @user
+    end
 
+    def pokemon?
+        @current_user.admin? or @current_user == @user
+    end
 
 end
