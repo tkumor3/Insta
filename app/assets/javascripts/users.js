@@ -8,7 +8,7 @@ $(document).ready(function(){
     });
 });
 
-var url='http://localhost:3000/users/1/notfollowback';
+var url='/users/1/notfollowback';
 
 $(document).ready(function() {
 
