@@ -17,7 +17,7 @@ $(document).ready(function() {
         $(".type-table").empty();
         $(".type-table").append("User not follow back");
         console.log("ok");
-        url = 'http://localhost:3000/users/1/notfollowback';
+        url = '/users/1/notfollowback';
         clean();
         table("unfollow");
     });
@@ -26,14 +26,14 @@ $(document).ready(function() {
         $(".type-table").empty();
         $(".type-table").append("Stop follow");
         console.log("ok");
-        url = 'http://localhost:3000/users/1/stopfollow';
+        url = '/users/1/stopfollow';
         clean();
         table("ok");
     });
     $(".pokemon").click(function(){
         $(".type-table").empty();
         $(".type-table").append("Pokemon");
-        url = 'http://localhost:3000/users/1/pokemon';
+        url = '/users/1/pokemon';
         clean();
         table("follow");
     });
