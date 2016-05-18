@@ -7,7 +7,9 @@ class UpdateRelation
 
         def call(client, current_user)
 
+
             fow = client.user_follows(client.user.id)
+
             fow.each {|inst_user| InstaUser.add(inst_user)}
             id_w = []
             fow.each {|id| id_w << id.id }

@@ -15,7 +15,7 @@ $(document).ready(function() {
    table("unfollow");
     $(".not_follow_back").click(function(){
         $(".type-table").empty();
-        $(".type-table").append("User not follow back");
+        $(".type-table").append("<p>User not follow back</p>");
         console.log("ok");
         url = '/users/1/notfollowback';
         clean();
@@ -24,7 +24,7 @@ $(document).ready(function() {
 
     $(".stop_follow").click(function(){
         $(".type-table").empty();
-        $(".type-table").append("Stop follow");
+        $(".type-table").append("<p>Stop follow</p>");
         console.log("ok");
         url = '/users/1/stopfollow';
         clean();
@@ -32,7 +32,7 @@ $(document).ready(function() {
     });
     $(".pokemon").click(function(){
         $(".type-table").empty();
-        $(".type-table").append("Pokemon");
+        $(".type-table").append("<p>Pokemon</p>");
         url = '/users/1/pokemon';
         clean();
         table("follow");
@@ -42,7 +42,7 @@ $(document).ready(function() {
 
 function unfollow(ins_id){
     console.log("unfollow");
-    $("table .button").append('<input type="button" value="unfollow"/>');
+    $("table .button").append('<input type="button" value="unfollow" class="btn btn-primary"/>');
     $("table .button").last().on("click",function(){
 
         $.ajax({
@@ -58,7 +58,7 @@ function unfollow(ins_id){
 
 function follow(ins_id){
     console.log("follow");
-    $("table .button").append('<input type="button" value="follow"/>');
+    $("table .button").append('<input type="button" value="follow" class="btn btn-primary button-group"/> ');
     $("table .button").last().on("click",function(){
         $.post('/instagram/follow',{ id: ins_id});
 
@@ -91,9 +91,9 @@ function drowRow(data, id,kind){
 
 
     $('#inst-table > tbody:last').append("<tr>" +
-        "<th>" + id + "</th>" +
-        "<th>" + data.name + "</th>"+
-        "<th class='button'></th>" +
+        "<td>" + id + "</td>" +
+        "<td>" + data.name + "</td>"+
+        "<td class='button'></td>" +
         "</tr>");
 
     if (kind == "unfollow") {

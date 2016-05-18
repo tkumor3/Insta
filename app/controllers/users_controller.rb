@@ -8,10 +8,20 @@ class UsersController < ApplicationController
    def show
         @user = current_user.insta_user
         authorize @user_p
+        begin
         UpdateRelation.build.call(@client,@user)
         TakeTagFromPhotos.build.call(@client,@user)
         @foll = @user.was_followers
         @usr_foll = @user.followers
+
+        rescue Instagram::BadRequest
+            flash[:denger] = "Pleas auth again"
+            current_user.update_attributes(have_authorization: false)
+            current_user.inst_token.destroy
+            redirect_to home_path
+        end
+
+
    end
 
    def index
@@ -37,7 +47,9 @@ class UsersController < ApplicationController
     end
 
     def info
+
         @client = Instagram.client(:access_token => @user_p.inst_token.access_token)
+
     end
 
     def user_not_authorized
