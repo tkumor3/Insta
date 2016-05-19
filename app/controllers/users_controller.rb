@@ -20,8 +20,6 @@ class UsersController < ApplicationController
             current_user.inst_token.destroy
             redirect_to home_path
         end
-
-
    end
 
    def index
@@ -47,14 +45,26 @@ class UsersController < ApplicationController
     end
 
     def info
-
-        @client = Instagram.client(:access_token => @user_p.inst_token.access_token)
+        begin @client = Instagram.client(:access_token => @user_p.inst_token.access_token)
+        rescue
+            flash[:alert] = "You haven't got auth"
+            redirect_to home_path
+        end
 
     end
 
     def user_not_authorized
         flash[:alert] = "You are not cool enough to do this - go back from whence you came."
         redirect_to current_user
+    end
+
+
+    def tags
+        @user = User.find(params[:id])
+        authorize @user
+        tags = @user.insta_user.tag_relations.order("counter desc").limit(10)
+        @tag = tags.map {|content|
+            {counter: content.counter, name: content.inst_tag.name}}
     end
 
     private

@@ -26,4 +26,8 @@ class UserPolicy < ApplicationPolicy
         @current_user.admin? or @current_user == @user
     end
 
+    def tags?
+        true
+    end
+
 end

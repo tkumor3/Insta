@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     get 'users/:id/notfollowback' => 'users#not_follow_back'
     get 'users/:id/stopfollow' => 'users#stop_follow'
     get 'users/:id/pokemon' => 'users#pokemon'
+    get 'users/:id/tags' => 'users#tags'
+    get 'tags' => 'tags#tags'
     post 'instagram/unfollow' => 'instagram#un_follow'
     post 'instagram/follow' => 'instagram#follow'
   # The priority is based upon order of creation: first created -> highest priority.

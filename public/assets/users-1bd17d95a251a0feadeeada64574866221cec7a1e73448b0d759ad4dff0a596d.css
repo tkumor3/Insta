@@ -1,0 +1,37 @@
+/* line 4, /Users/Tomek/RubymineProjects/Insta/app/assets/stylesheets/users.scss */
+.conteiner {
+  margin-top: 150px;
+}
+
+/* line 13, /Users/Tomek/RubymineProjects/Insta/app/assets/stylesheets/users.scss */
+table {
+  width: 100%;
+  text-align: center;
+}
+/* line 17, /Users/Tomek/RubymineProjects/Insta/app/assets/stylesheets/users.scss */
+table tbody tr {
+  border: 1px solid cornflowerblue;
+}
+/* line 21, /Users/Tomek/RubymineProjects/Insta/app/assets/stylesheets/users.scss */
+table tbody tr p {
+  font-size: 1.2em;
+}
+/* line 27, /Users/Tomek/RubymineProjects/Insta/app/assets/stylesheets/users.scss */
+table td {
+  width: 33%;
+}
+/* line 31, /Users/Tomek/RubymineProjects/Insta/app/assets/stylesheets/users.scss */
+table .button {
+  text-align: right;
+}
+
+/* line 40, /Users/Tomek/RubymineProjects/Insta/app/assets/stylesheets/users.scss */
+.panel-heading p {
+  text-align: center;
+  font-size: 1.4em;
+}
+
+/* line 47, /Users/Tomek/RubymineProjects/Insta/app/assets/stylesheets/users.scss */
+.follow-container {
+  margin-top: 100px;
+}
