@@ -1,28 +1,28 @@
 .container
-    .row
-        .col-md-3.col-md-offset-2
-            = image_tag(@user.profile_picture, :class => "img-circle")
+  .row
+    .col-md-3.col-md-offset-2
+      = image_tag(@user.profile_picture, :class => "img-circle")
 
-        .col-md-7
-            %h3 #{@user.username}
+    .col-md-7
+      %h3 #{@user.username}
 
-            %p
-                = link_to "edit" , "#"
-                %button.bmanu
-                    more
+      %p
+        = link_to "edit" , "#"
+        %button.bmanu
+          more
 
-            %p.manu.display
-                %button.pokemon
-                    Pokenon
-                %button.not_follow_back
-                    Not follow back
-                %button.stop_follow
-                    Stop follow
+      %p.manu.display
+        %button.pokemon
+          Pokenon
+        %button.not_follow_back
+          Not follow back
+        %button.stop_follow
+          Stop follow
 
-            %p
-                follower by: #{@user.followers.count}
-                followers: #{@user.followering.count}
+      %p
+        follower by: #{@user.followers.count}
+        followers: #{@user.followering.count}
 
 
 
-    =render "users/table_jquery"
+  =render "users/table_jquery"
