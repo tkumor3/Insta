@@ -11,7 +11,7 @@ class TakeTagFromPhotos
         InstTag.addTag(ins_user, tag) if media.created_time > ins_user.last_photo.to_s
       end
     end
-    ins_user.last_photo = media[0].created_time
+    ins_user.last_photo = inst[0].created_time
     ins_user.save
   end
 end
