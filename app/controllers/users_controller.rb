@@ -10,10 +10,10 @@ class UsersController < ApplicationController
     @user = current_user.insta_user
     authorize @user_p
     begin
-    UpdateRelation.build.call(@client, @user)
-    TakeTagFromPhotos.build.call(@client, @user)
-    @foll = @user.was_followers
-    @usr_foll = @user.followers
+      UpdateRelation.build.call(@client, @user)
+      TakeTagFromPhotos.build.call(@client, @user)
+      @foll = @user.was_followers
+      @usr_foll = @user.followers
     rescue Instagram::BadRequest
       flash[:denger] = 'Pleas auth again'
       current_user.update_attributes(have_authorization: false)
