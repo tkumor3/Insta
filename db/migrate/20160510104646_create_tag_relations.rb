@@ -1,9 +1,10 @@
+#User Tag
 class CreateTagRelations < ActiveRecord::Migration
   def change
     create_table :tag_relations do |t|
       t.integer :insta_user_id
       t.integer :inst_tag_id
-      t.integer :counter , default: 0
+      t.integer :counter, default: 0
 
       t.timestamps null: false
     end

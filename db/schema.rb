@@ -12,15 +12,36 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20160517082122) do
-
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "authorizations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "acces_token"
+    t.string   "id_ins"
+    t.string   "name"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
+  create_table "followeds", force: :cascade do |t|
+    t.string   "username"
+    t.string   "ins_id"
+    t.boolean  "is_follow",  default: true
+    t.integer  "user_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
 
-
-
-
+  create_table "followers", force: :cascade do |t|
+    t.string   "username"
+    t.string   "ins_id"
+    t.boolean  "toFollows"
+    t.integer  "user_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.boolean  "is_follow",  default: true
+  end
 
   create_table "inst_relations", force: :cascade do |t|
     t.integer  "follower_id"
@@ -30,7 +51,8 @@ ActiveRecord::Schema.define(version: 20160517082122) do
   end
 
   add_index "inst_relations", ["followed_id"], name: "index_inst_relations_on_followed_id", using: :btree
-  add_index "inst_relations", ["follower_id", "followed_id"], name: "index_inst_relations_on_follower_id_and_followed_id", unique: true, using: :btree
+  add_index "inst_relations", ["follower_id", "followed_id"],
+            name: "index_inst_relations_on_follower_id_and_followed_id", unique: true, using: :btree
   add_index "inst_relations", ["follower_id"], name: "index_inst_relations_on_follower_id", using: :btree
 
   create_table "inst_tags", force: :cascade do |t|
