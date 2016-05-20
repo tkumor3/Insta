@@ -68,12 +68,12 @@ class UsersController < ApplicationController
 
   private
   
-    def find_user
-      @user_p = User.find(params[:id])
-    end
+  def find_user
+    @user_p = User.find(params[:id])
+  end
 
-    def render_json data
-      render json: data.map { |content|
+  def render_json data
+    render json: data.map { |content|
               { id: content.ins_id, name: content.username } }
-    end
+  end
 end
