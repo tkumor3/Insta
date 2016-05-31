@@ -28,9 +28,9 @@ gem 'bootstrap-sass'
 gem 'bootstrap_form'
 gem 'html2haml'
 gem 'instagram'
-gem "bootstrap-table-rails"
-gem "pundit"
-gem "figaro"
+gem 'bootstrap-table-rails'
+gem 'pundit'
+gem 'figaro'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -43,7 +43,7 @@ gem "figaro"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+  gem 'rspec-rails', '~> 3.4'
 end
 
 group :development do

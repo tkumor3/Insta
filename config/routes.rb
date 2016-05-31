@@ -10,7 +10,9 @@ Rails.application.routes.draw do
     get 'users/:id/stopfollow' => 'users#stop_follow'
     get 'users/:id/pokemon' => 'users#pokemon'
     get 'users/:id/tags' => 'users#tags'
-    get 'tags' => 'tags#tags'
+
+		get 'user/:id/tags' => "insta_tags#user_tags"
+		get '/tags' => "insta_tags#apriori"
     post 'instagram/unfollow' => 'instagram#un_follow'
     post 'instagram/follow' => 'instagram#follow'
   # The priority is based upon order of creation: first created -> highest priority.

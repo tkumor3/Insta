@@ -10,7 +10,9 @@ class UpdateRelation
   end
 
   def call(client, user)
-    @update_followers.call(client, user)
-    @update_followed_by.call(client, user)
+    followers = client.user_follows(client.user.id)
+    followe_by  = client.user_followed_by(client.user.id)
+    @update_followers.call(followers, user)
+    @update_followed_by.call(followe_by, user)
   end
 end

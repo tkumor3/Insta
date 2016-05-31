@@ -1,0 +1,2 @@
+module InstaTagsHelper
+end

@@ -4,6 +4,9 @@ class InstTag < ActiveRecord::Base
   has_many :tag_relations
   has_many :insta_users, through: :tag_relations
 
+  has_many :photo_tags
+  has_many :user_photos, through: :photo_tags
+
   def self.addTag(user, tag)
     tag_n = InstTag.find_or_create_by(name: tag)
     tag_r = TagRelation.find_or_create_by(insta_user_id: user.id,

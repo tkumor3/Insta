@@ -11,15 +11,18 @@ class UsersController < ApplicationController
     authorize @user_p
     begin
       UpdateRelation.build.call(@client, @user)
-      TakeTagFromPhotos.build.call(@client, @user)
+      inst = @client.user_recent_media(@user.ins_id)
+      TakeTagFromPhotos.build.call(inst, @user)
       @foll = @user.was_followers
       @usr_foll = @user.followers
+
     rescue Instagram::BadRequest
       flash[:denger] = 'Pleas auth again'
       current_user.update_attributes(have_authorization: false)
       current_user.inst_token.destroy
       redirect_to home_path
     end
+
   end
 
   def index
@@ -73,6 +76,7 @@ class UsersController < ApplicationController
   end
 
   def render_json data
+
     render json: data.map { |content|
               { id: content.ins_id, name: content.username } }
   end

@@ -20,6 +20,9 @@ class InstaUser < ActiveRecord::Base
   has_many :was_followering, through: :was_active_relationships, source: :followed
   has_many :was_followers, through: :was_passive_relationships, source: :follower
 
+  has_many :user_photo_relations
+  has_many :user_photos, through: :user_photo_relations
+
   def follow(insta_user)
     was_active_relationships.find_by(followed_id: insta_user.id).destroy if
         was_followering.include?(insta_user)

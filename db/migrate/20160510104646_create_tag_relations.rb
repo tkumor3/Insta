@@ -8,7 +8,7 @@ class CreateTagRelations < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-      add_index :tag_relations, :insta_user_id
+
       add_index :tag_relations, :inst_tag_id
       add_index :tag_relations, [:insta_user_id, :inst_tag_id], unique: true
   end

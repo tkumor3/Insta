@@ -4,14 +4,15 @@ class TakeTagFromPhotos
     new
   end
 
-  def call(client, ins_user)
-    inst = client.user_recent_media(ins_user.ins_id)
-    inst.each do |media|
+  def call(medias, ins_user)
+    medias.each do |media|
       media.tags.each do |tag|
         InstTag.addTag(ins_user, tag) if media.created_time > ins_user.last_photo.to_s
       end
     end
-    ins_user.last_photo = inst[0].created_time
-    ins_user.save
+    unless medias.empty?
+      ins_user.last_photo = medias[0].created_time
+      ins_user.save
+    end
   end
 end
